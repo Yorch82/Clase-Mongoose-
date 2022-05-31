@@ -1,7 +1,13 @@
 const express = require("express");
 const app = express();
 const PORT = 8080;
-const { dbConnection } = require("./config/config")
+const { dbConnection } = require("./config/config");
+const ProductController = require("./controllers/ProductController");
+
 app.use(express.json())
-dbConnection()
+
+dbConnection();
+
+app.use('/products', require('./routes/products'));
+
 app.listen(PORT, console.log(`Server started on port ${PORT}`));
